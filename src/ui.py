@@ -92,16 +92,23 @@ class WeatherApp(QWidget):
             return
 
         weather_data, error = get_weather_data(city)
+        print(weather_data, error)
 
         if error:
-            self.display_error(error[0])  # Fail state, set error
+            print(error)
+            if isinstance(error, tuple):  # Make sure the error is a tuple
+                self.display_error(error)  # Fail state, set error
+            else:
+                self.display_error(
+                    f"Unexpected error: {error}"
+                )  # In case error isn't a tuple
         else:
             self.display_weather(weather_data)  # Success state, update UI
 
     # Error event
-    def display_error(self, message):
+    def display_error(self, error):
         self.temperature_label.setStyleSheet("font-size:30px;")
-        self.temperature_label.setText(message)
+        self.temperature_label.setText(error[0])
         self.emoji_label.clear()
         self.description_label.clear()
 

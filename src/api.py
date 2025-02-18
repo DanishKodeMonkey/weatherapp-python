@@ -38,31 +38,33 @@ def get_weather_data(
 
     # Fail state
     except requests.exceptions.HTTPError as http_error:
+        print(response.status_code)
         match response.status_code:
             case 400:
-                return ("Bad request:\nPlease check your input", 400)
+                return None, ("Bad request:\nPlease check your input", 400)
             case 401:
-                return ("Unauthorized:\nInvalidate API key", 401)
+                return None, ("Unauthorized:\nInvalidate API key", 401)
             case 403:
-                return ("Access denied:\nAccess is denied", 403)
+                return None, ("Access denied:\nAccess is denied", 403)
             case 404:
-                return ("Not found:\nCity not found", 404)
+                print("Hit")
+                return None, ("Not found:\nCity not found", 404)
             case 500:
-                return ("Internal server error:\nPlease try again later", 500)
+                return None, ("Internal server error:\nPlease try again later", 500)
             case 502:
-                return ("Bad gateway:\nInvalid response from the server", 502)
+                return None, ("Bad gateway:\nInvalid response from the server", 502)
             case 503:
-                return ("Service Unavailable:\nServer is down", 503)
+                return None, ("Service Unavailable:\nServer is down", 503)
             case 504:
-                return ("Gateway timeout:\nNo response from the server", 504)
+                return None, ("Gateway timeout:\nNo response from the server", 504)
             case _:
                 return (f"HTTP error occured\n{http_error}", response.status_code)
     except requests.exceptions.ConnectionError:
-        return ("Connection Error:\n Check your internet connection", 0)
+        return None, ("Connection Error:\n Check your internet connection", 0)
     except requests.exceptions.Timeout:
-        return ("Timeout Error:\nThe request timed out", 0)
+        return None, ("Timeout Error:\nThe request timed out", 0)
     except requests.exceptions.TooManyRedirects:
-        return ("Too many redirects:\nCheck the URL", 0)
+        return None, ("Too many redirects:\nCheck the URL", 0)
     except requests.exceptions.RequestException as req_error:
-        return (f"Request Error:\n{req_error}", 0)
+        return None, (f"Request Error:\n{req_error}", 0)
     return None, None  # Unexpected scenario NOTHING happens.
