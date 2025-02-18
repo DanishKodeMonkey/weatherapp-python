@@ -62,7 +62,7 @@ class WeatherApp(QWidget):
                 font-weight:bold;
             }
             QLineEdit#city_input{
-                font-size:40px
+                font-size:40px;
             }
             QPushButton#get_weather_button{
                 font-size: 30px;
@@ -138,6 +138,8 @@ class WeatherApp(QWidget):
     def display_error(self, message):
         self.temperature_label.setStyleSheet("font-size:30px;")
         self.temperature_label.setText(message)
+        self.emoji_label.clear()
+        self.description_label.clear()
 
     # Success event
     def display_weather(self, data):
