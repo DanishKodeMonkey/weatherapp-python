@@ -27,6 +27,7 @@ class WeatherApp(QWidget):
     # UI initialiser, handles placement and customisation of elements
     def initUI(self):
         self.setWindowTitle("DKM WeatherApp")
+        self.setFixedSize(400, 600)
 
         vbox = QVBoxLayout()
 
