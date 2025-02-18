@@ -1,6 +1,6 @@
 # 🌤 DKM WeatherApp
 
-DKM WeatherApp is a simple, elegant weather application built with PyQt5 and OpenWeather API. It allows users to enter a city name and retrieve real-time weather data, including temperature, weather conditions, and an emoji representation of the weather.
+DKM WeatherApp is a simple, weather application built with PyQt5 and OpenWeather API. It allows users to enter a city name and retrieve real-time weather data, including temperature, weather conditions, and an emoji representation of the weather.
 
 ## Technologies Used
 
