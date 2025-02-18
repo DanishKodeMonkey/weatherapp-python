@@ -1,4 +1,6 @@
 import sys
+import os
+from dotenv import load_dotenv
 import requests
 from PyQt5.QtWidgets import (
     QApplication,
@@ -10,6 +12,9 @@ from PyQt5.QtWidgets import (
 )
 from PyQt5.QtCore import Qt
 
+load_dotenv()
+API_KEY = os.getenv("API_KEY")
+
 
 class WeatherApp(QWidget):
     def __init__(self):
@@ -17,9 +22,9 @@ class WeatherApp(QWidget):
         self.city_label = QLabel("Enter city name: ", self)
         self.city_input = QLineEdit(self)
         self.get_weather_button = QPushButton("Get Weather", self)
-        self.temperature_label = QLabel("0 \u00b0 C", self)
-        self.emoji_label = QLabel("🌞")
-        self.description_label = QLabel("Sunny", self)
+        self.temperature_label = QLabel(self)
+        self.emoji_label = QLabel(self)
+        self.description_label = QLabel(self)
         self.initUI()
 
     # UI initialiser, handles placement and customisation of elements
@@ -80,6 +85,21 @@ class WeatherApp(QWidget):
             }
         """
         )
+        # connect clicked signal to get_weather
+        self.get_weather_button.clicked.connect(self.get_weather)
+
+    # API integration
+    def get_weather(self):
+
+        api_key = ""
+
+    # Error event
+    def display_error(self, message):
+        pass
+
+    # Success event
+    def display_weather(self, data):
+        pass
 
 
 if __name__ == "__main__":
