@@ -16,7 +16,7 @@ DKM WeatherApp is a simple, elegant weather application built with PyQt5 and Ope
 
 ## File structure
 
-`
+```
 weather_app/
 │── src/
 │   ├── main.py
@@ -27,4 +27,4 @@ weather_app/
 │── .venv/
 │── README.md
 │── requirements.txt
-`
+```
